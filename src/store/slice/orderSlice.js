@@ -5,7 +5,7 @@ const initialState = {
 };
 
 const orderSlice = createSlice({
-    name: 'order',
+    name: 'Orders',
     initialState,
     reducers: {
         setOrderDetails: (state, action) => {
