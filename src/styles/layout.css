@@ -1,0 +1,82 @@
+.layout-container {
+    display: flex;
+    height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-content {
+    padding: 20px;
+    overflow-y: auto;
+}
+
+
+/* sidebar */
+.sidebar-main-panel {
+    background: var(--background-secondary);
+    border-right: 1px solid var(--border);
+    padding: 20px;
+    box-sizing: border-box;
+    transition: width 0.3s;
+
+
+}
+
+.sidebar-main-panel.closed {
+    width: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar-main-panel.open {
+    width: 230px;
+
+}
+
+.menuButton {
+    margin-left: 0;
+    border-radius: 8px;
+    padding: 5px;
+    border: 1px solid var(--border);
+    background-color: var(--background-secondary);
+}
+
+.menuButton:hover {
+    margin-left: 0;
+    border-radius: 8px;
+    padding: 5px;
+
+    border: 1px solid var(--border);
+    background-color: var(--background-hover);
+}
+
+.sideIcon {
+    color: var(--text-primary);
+}
+
+.listItemContent {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    padding-top: 0.5rem;
+}
+
+.listItemIcon {
+    min-width: 35px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+}
+
+.listItemText {
+    font-style: none;
+    font-size: 12px;
+    color: var(--text-primary);
+}
