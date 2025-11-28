@@ -102,13 +102,7 @@ export default function Sidebar() {
                 </List>
             </Box>
 
-            {/* {drawerOpen && (
-                <div style={{ marginTop: 20 }}>
-                    <Link to="/">Home</Link><br /><br />
-                    <Link to="/productList">Product List</Link><br /><br />
-                    <Link to="/orderList">Order List</Link>
-                </div>
-            )} */}
+
         </div>
     );
 }
