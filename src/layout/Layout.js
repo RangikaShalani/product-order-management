@@ -6,11 +6,12 @@ import Navbar from "../components/Navbar";
 import "../styles/layout.css";
 
 export default function Layout({ children }) {
+    const [sidebarOpen, setSidebarOpen] = useState(false);
     return (
         <div className="layout-container">
-            <Sidebar />
+            <Navbar onMenuClick={() => setSidebarOpen(true)} />
             <div className="main-content">
-                <Navbar />
+                <Sidebar open={sidebarOpen} setOpen={setSidebarOpen} />
                 <div className="page-content">{children}</div>
             </div>
         </div>

@@ -1,0 +1,19 @@
+.page-container {
+    padding: 50px;
+    overflow-y: auto;
+}
+
+.home-page-container {
+
+    background-image: var(--background-image);
+
+    height: 500px;
+    border-radius: 10px;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}

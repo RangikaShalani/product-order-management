@@ -6,61 +6,48 @@ import {
     List,
     ListItem,
     Typography,
-    Drawer,
     IconButton,
     ListItemIcon,
-    Collapse,
-    Paper,
     Tooltip,
     Box,
 } from "@mui/material";
 import {
     ChevronLeft,
-    Search,
-    ExpandLess,
-    ExpandMore,
-    KeyOutlined,
-    LinkOutlined,
-    ManageAccountsOutlined,
-    SettingsOutlined,
-    ShieldOutlined,
-    Menu,
+    Menu
 } from "@mui/icons-material";
-
+import LocalMallIcon from '@mui/icons-material/LocalMall';
+import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import '../styles/layout.css';
 
-export default function Sidebar() {
+export default function Sidebar({ open, setOpen }) {
 
     const settingsList = [
         {
             id: 1,
             name: "Product List",
             link: "/productList",
-            icon: <ManageAccountsOutlined />,
+            icon: <LocalMallIcon />,
         },
         {
             id: 2,
             name: "Order List",
             link: "/orderList",
-            icon: <ShieldOutlined />,
+            icon: <ShoppingCartCheckoutIcon />,
         },
 
     ];
 
-    const [drawerOpen, setDrawerOpen] = useState(false);
-    const toggleDrawer = () => {
-        setDrawerOpen(!drawerOpen);
-    };
+    // const [drawerOpen, setDrawerOpen] = useState(false);
+    // const toggleDrawer = () => {
+    //     setDrawerOpen(!drawerOpen);
+    // };
 
     return (
         <div
-            className={`sidebar-main-panel ${drawerOpen ? "open" : "closed"}`}
-
+            className={`sidebar-main-panel ${open ? "open" : "closed"}`}
         >
-            {/* <button onClick={toggleDrawer}>☰</button> */}
-
-            <IconButton onClick={toggleDrawer} className="menuButton" >
-                {drawerOpen ? <ChevronLeft className="sideIcon" /> : <Menu className="sideIcon" />}
+            <IconButton onClick={() => setOpen(!open)} className="menuButton" >
+                {open ? <ChevronLeft className="sideIcon" /> : <Menu className="sideIcon" />}
             </IconButton>
 
             <Box className="listContainer" >
@@ -70,10 +57,11 @@ export default function Sidebar() {
                             <ListItem
                                 button
                                 key={item.id}
+                                className={open ? "customListItem" : ""}
                             >
-                                <Link to={item.link} passHref>
+                                <Link to={item.link} passHref className="listItemLink">
                                     <Tooltip
-                                        title={!drawerOpen ? item.name : ""}
+                                        title={!open ? item.name : ""}
                                         placement="right"
                                     >
                                         <Box className="listItemContent">
@@ -83,7 +71,7 @@ export default function Sidebar() {
                                                 {item.icon}
                                             </ListItemIcon>
 
-                                            {drawerOpen && (
+                                            {open && (
                                                 <Typography
                                                     // variant="h6"
                                                     className="listItemText"
@@ -97,8 +85,6 @@ export default function Sidebar() {
                             </ListItem>
                         );
                     })}
-
-
                 </List>
             </Box>
 
