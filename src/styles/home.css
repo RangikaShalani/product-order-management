@@ -46,8 +46,8 @@
 /* product page */
 
 .product-page-container {
+    flex: 1;
     width: 100%;
-    max-width: 1200px;
     border-radius: 10px;
     background-color: var(--background-sp);
     padding: 20px;
