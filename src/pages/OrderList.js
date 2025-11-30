@@ -34,7 +34,9 @@ import {
     Chip,
     TableSortLabel,
     TextField,
+    Box,
 } from "@mui/material";
+import "../styles/home.css";
 
 export default function OrderList() {
     const { data: orders = [], error, isLoading } = useGetAllOrdersQuery();
@@ -85,95 +87,97 @@ export default function OrderList() {
     if (error) return <Typography color="error">Failed to load orders</Typography>;
 
     return (
-        <div style={{ padding: 20 }}>
-            <Typography variant="h4" gutterBottom>
-                Order List
-            </Typography>
+        <div className="page-container" >
+            <Box className="product-page-container">
 
-            <div style={{ display: "flex", gap: 20, marginBottom: 20 }}>
-                <FormControl>
-                    <InputLabel>Status</InputLabel>
-                    <Select
-                        value={statusFilter}
-                        onChange={(e) => setStatusFilter(e.target.value)}
-                        label="Status"
-                        style={{ width: 150 }}
-                    >
-                        <MenuItem value="">All</MenuItem>
-                        <MenuItem value="Pending">Pending</MenuItem>
-                        <MenuItem value="Processing">Processing</MenuItem>
-                        <MenuItem value="Shipped">Shipped</MenuItem>
-                        <MenuItem value="Delivered">Delivered</MenuItem>
-                        <MenuItem value="Cancelled">Cancelled</MenuItem>
-                    </Select>
-                </FormControl>
+                <h1 className="page-header-title" >Order List</h1>
 
-                <TextField
-                    label="Search Orders"
-                    value={searchText}
-                    onChange={(e) => setSearchText(e.target.value)}
-                    style={{ width: 300 }}
-                />
-            </div>
 
-            <TableContainer component={Paper}>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            {[
-                                { label: "Order ID", key: "OrderId" },
-                                { label: "Product Name", key: "productName" },
-                                { label: "Customer", key: "orderBy" },
-                                { label: "Price", key: "OrderPrice" },
-                                { label: "Delivery Option", key: "delivereOption" },
-                                { label: "Address", key: "deliverAddress" },
-                                { label: "Quantity", key: "quantity" },
-                                { label: "Status", key: "status" },
-                            ].map((col) => (
-                                <TableCell key={col.key}>
-                                    <TableSortLabel
-                                        active={sortConfig.key === col.key}
-                                        direction={sortConfig.direction}
-                                        onClick={() => handleSort(col.key)}
-                                    >
-                                        {col.label}
-                                    </TableSortLabel>
-                                </TableCell>
-                            ))}
-                        </TableRow>
-                    </TableHead>
+                <div style={{ display: "flex", gap: 20, marginBottom: 20 }}>
+                    <FormControl>
+                        <InputLabel>Status</InputLabel>
+                        <Select
+                            value={statusFilter}
+                            onChange={(e) => setStatusFilter(e.target.value)}
+                            label="Status"
+                            style={{ width: 150 }}
+                        >
+                            <MenuItem value="">All</MenuItem>
+                            <MenuItem value="Pending">Pending</MenuItem>
+                            <MenuItem value="Processing">Processing</MenuItem>
+                            <MenuItem value="Shipped">Shipped</MenuItem>
+                            <MenuItem value="Delivered">Delivered</MenuItem>
+                            <MenuItem value="Cancelled">Cancelled</MenuItem>
+                        </Select>
+                    </FormControl>
 
-                    <TableBody>
-                        {filteredOrders.map((order) => (
-                            <TableRow key={order.OrderId}>
-                                <TableCell>{order.OrderId}</TableCell>
-                                <TableCell>{order.productName}</TableCell>
-                                <TableCell>{order.orderBy}</TableCell>
-                                <TableCell>{order.OrderPrice.toLocaleString()}</TableCell>
-                                <TableCell>{order.delivereOption}</TableCell>
-                                <TableCell>{order.deliverAddress}</TableCell>
-                                <TableCell>{order.quantity}</TableCell>
-                                <TableCell>
-                                    <Chip
-                                        label={order.status}
-                                        color={
-                                            order.status === "Pending"
-                                                ? "warning"
-                                                : order.status === "Processing"
-                                                    ? "info"
-                                                    : order.status === "Shipped"
-                                                        ? "primary"
-                                                        : order.status === "Delivered"
-                                                            ? "success"
-                                                            : "error"
-                                        }
-                                    />
-                                </TableCell>
+                    <TextField
+                        label="Search Orders"
+                        value={searchText}
+                        onChange={(e) => setSearchText(e.target.value)}
+                        style={{ width: 300 }}
+                    />
+                </div>
+
+                <TableContainer component={Paper}>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                {[
+                                    { label: "Order ID", key: "OrderId" },
+                                    { label: "Product Name", key: "productName" },
+                                    { label: "Customer", key: "orderBy" },
+                                    { label: "Price", key: "OrderPrice" },
+                                    { label: "Delivery Option", key: "delivereOption" },
+                                    { label: "Address", key: "deliverAddress" },
+                                    { label: "Quantity", key: "quantity" },
+                                    { label: "Status", key: "status" },
+                                ].map((col) => (
+                                    <TableCell key={col.key}>
+                                        <TableSortLabel
+                                            active={sortConfig.key === col.key}
+                                            direction={sortConfig.direction}
+                                            onClick={() => handleSort(col.key)}
+                                        >
+                                            {col.label}
+                                        </TableSortLabel>
+                                    </TableCell>
+                                ))}
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+                        </TableHead>
+
+                        <TableBody>
+                            {filteredOrders.map((order) => (
+                                <TableRow key={order.OrderId}>
+                                    <TableCell>{order.OrderId}</TableCell>
+                                    <TableCell>{order.productName}</TableCell>
+                                    <TableCell>{order.orderBy}</TableCell>
+                                    <TableCell>{order.OrderPrice.toLocaleString()}</TableCell>
+                                    <TableCell>{order.delivereOption}</TableCell>
+                                    <TableCell>{order.deliverAddress}</TableCell>
+                                    <TableCell>{order.quantity}</TableCell>
+                                    <TableCell>
+                                        <Chip
+                                            label={order.status}
+                                            color={
+                                                order.status === "Pending"
+                                                    ? "warning"
+                                                    : order.status === "Processing"
+                                                        ? "info"
+                                                        : order.status === "Shipped"
+                                                            ? "primary"
+                                                            : order.status === "Delivered"
+                                                                ? "success"
+                                                                : "error"
+                                            }
+                                        />
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </Box>
         </div>
     );
 }

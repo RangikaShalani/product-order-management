@@ -12,9 +12,7 @@ export default function Home() {
                 <Typography variant="body1">
                     Welcome to your React + Router + Global CSS app.
                 </Typography>
-                {/* <Typography variant="body1">
-                    Click below to login.
-                </Typography> */}
+
 
             </div>
         </div>
