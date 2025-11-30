@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Moon, Sun } from 'lucide-react';
 import MenuIcon from "@mui/icons-material/Menu";
 import "../styles/layout.css";
 
@@ -26,7 +25,10 @@ export default function Navbar({ onMenuClick }) {
                     onClick={() => setDarkMode(!darkMode)}
                     className="website-theme-btn"
                 >
-                    {darkMode ? <Moon /> : <Sun />}
+                    🌙
+
+                    {/* {darkMode ? "🌙" : "☀️"} */}
+
                 </button>
             </div>
         </div>

@@ -57,3 +57,25 @@
     background: var(--background);
     color: var(--text-primary);
 }
+
+.view-btn {
+    background: var(--background-gradient) !important;
+    color: var(--foreground) !important;
+    text-transform: none;
+}
+
+
+@media (max-width: 768px) {
+
+    .page-container {
+        padding: 10px;
+    }
+
+    .home-page-container {
+        padding: 10px;
+    }
+
+    .product-page-container {
+        padding: 10px;
+    }
+}

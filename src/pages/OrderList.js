@@ -27,6 +27,8 @@ import {
     TableRow,
     Paper,
     Typography,
+    CircularProgress,
+    Pagination,
     Select,
     MenuItem,
     FormControl,
@@ -40,6 +42,8 @@ import "../styles/home.css";
 
 export default function OrderList() {
     const { data: orders = [], error, isLoading } = useGetAllOrdersQuery();
+    const [page, setPage] = useState(1);
+    const [rowsPerPage, setRowsPerPage] = useState(5);
 
     const [statusFilter, setStatusFilter] = useState("");
     const [searchText, setSearchText] = useState("");
@@ -62,6 +66,7 @@ export default function OrderList() {
             );
         }
 
+
         // Sorting
         if (sortConfig.key) {
             filtered = [...filtered].sort((a, b) => {
@@ -83,8 +88,33 @@ export default function OrderList() {
         }));
     };
 
-    if (isLoading) return <Typography>Loading orders...</Typography>;
-    if (error) return <Typography color="error">Failed to load orders</Typography>;
+    // Calculate paginated data
+    const paginatedOrders = useMemo(() => {
+        const startIndex = (page - 1) * rowsPerPage;
+        const endIndex = startIndex + rowsPerPage;
+        return filteredOrders.slice(startIndex, endIndex);
+    }, [filteredOrders, page, rowsPerPage]);
+
+    const totalPages = Math.ceil(filteredOrders.length / rowsPerPage);
+
+    // Loading & Error Handling
+    if (isLoading)
+        return (
+            <div className="page-container" >
+                <Box className="loading-container" >
+                    <CircularProgress />
+                </Box>
+            </div>
+        );
+
+    if (error)
+        return (
+            <div className="page-container" >
+                <Box className="error-container" >
+                    Failed to load orders.
+                </Box>
+            </div>
+        );
 
     return (
         <div className="page-container" >
@@ -129,7 +159,7 @@ export default function OrderList() {
                                     { label: "Customer", key: "orderBy" },
                                     { label: "Price", key: "OrderPrice" },
                                     { label: "Delivery Option", key: "delivereOption" },
-                                    { label: "Address", key: "deliverAddress" },
+                                    // { label: "Address", key: "deliverAddress" },
                                     { label: "Quantity", key: "quantity" },
                                     { label: "Status", key: "status" },
                                 ].map((col) => (
@@ -147,14 +177,14 @@ export default function OrderList() {
                         </TableHead>
 
                         <TableBody>
-                            {filteredOrders.map((order) => (
+                            {paginatedOrders.map((order) => (
                                 <TableRow key={order.OrderId}>
                                     <TableCell>{order.OrderId}</TableCell>
                                     <TableCell>{order.productName}</TableCell>
                                     <TableCell>{order.orderBy}</TableCell>
                                     <TableCell>{order.OrderPrice.toLocaleString()}</TableCell>
                                     <TableCell>{order.delivereOption}</TableCell>
-                                    <TableCell>{order.deliverAddress}</TableCell>
+                                    {/* <TableCell>{order.deliverAddress}</TableCell> */}
                                     <TableCell>{order.quantity}</TableCell>
                                     <TableCell>
                                         <Chip
@@ -175,7 +205,19 @@ export default function OrderList() {
                                 </TableRow>
                             ))}
                         </TableBody>
+
+
                     </Table>
+                    <Box display="flex" justifyContent="center" alignItems="center" p={2}>
+
+                        {/* Pagination Component */}
+                        <Pagination
+                            count={totalPages}
+                            page={page}
+                            onChange={(event, value) => setPage(value)}
+                            color="primary"
+                        />
+                    </Box>
                 </TableContainer>
             </Box>
         </div>

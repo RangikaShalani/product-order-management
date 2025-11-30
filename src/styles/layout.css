@@ -12,15 +12,9 @@
 }
 
 .page-content {
-    /* Add these styles to make it flexible */
     flex-grow: 1;
-    /* Takes up all available horizontal space */
-    /* padding: 20px; */
-    /* Add desired padding here instead of in specific pages */
     overflow-y: auto;
-    /* Handles vertical scrolling for content */
     box-sizing: border-box;
-    /* Ensures padding is included in the element's total width */
 }
 
 
@@ -137,7 +131,7 @@
 
 .website-theme-btn {
     padding: 4px 4px;
-    border: 1px solid var(--background);
+    border: 1px solid var(--secondary);
     border-radius: 50px;
     background: var(--background);
     color: var(--primary);
