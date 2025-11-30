@@ -78,6 +78,8 @@ html.dark {
     --background-secondary: #5a5656;
     --background-sp: #272c31;
 
+    --background-gradient-1: radial-gradient(circle at top, #1e3a8a, #111827);
+    --background-gradient-2: linear-gradient(180deg, #1e3a8a, #111827);
     --background-image: url('../../public/home-background-dark.png');
     --background-gradient: linear-gradient(135deg, #3a3a3a, #161616);
 
