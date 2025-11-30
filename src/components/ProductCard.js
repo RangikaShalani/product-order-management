@@ -10,10 +10,11 @@ import {
     Button,
     Switch,
     FormControlLabel,
+    CircularProgress
 } from "@mui/material";
 import "../styles/components.css";
 
-const ProductCard = ({ product, stock, setStock, status, setStatus, open, onClose, onSave }) => {
+const ProductCard = ({ product, stock, setStock, status, setStatus, open, onClose, onSave, isUpdating }) => {
     if (!product) return null;
 
     const active = (product?.status === "Active" ? true : false);
@@ -64,7 +65,7 @@ const ProductCard = ({ product, stock, setStock, status, setStatus, open, onClos
             <DialogActions>
                 <Button onClick={onClose}>Cancel</Button>
                 <Button variant="contained" onClick={onSave}>
-                    Save
+                    {isUpdating ? <CircularProgress /> : "Save"}
                 </Button>
             </DialogActions>
         </Dialog>

@@ -1,4 +1,6 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setProductDetails, updateProductInStore } from "../store/slice/productSlice";
 import {
     Box,
     TextField,
@@ -18,9 +20,18 @@ import FilterPanel from "../components/FilterPanel";
 import "../styles/home.css";
 
 export default function ProductList() {
-    const { data: productsList = [], error, isLoading } = useGetAllProductsQuery();
-    const [updateProduct] = useUpdateProductMutation();
+    const { data: fetchedProducts = [], error, isLoading } = useGetAllProductsQuery();
+    const [updateProduct, { isLoading: isUpdating }] = useUpdateProductMutation();
+    const dispatch = useDispatch();
 
+    // READ productList from Redux
+    const productsList = useSelector((state) => state.product.productList) || [];
+
+    useEffect(() => {
+        if (fetchedProducts.length > 0) {
+            dispatch(setProductDetails(fetchedProducts));
+        }
+    }, [fetchedProducts]);
 
     // STATE FOR FILTERS
     const [searchText, setSearchText] = useState("");
@@ -37,9 +48,9 @@ export default function ProductList() {
     // Extract unique categories
     const categories = useMemo(() => {
         const setCat = new Set();
-        productsList.forEach((p) => setCat.add(p.category));
+        fetchedProducts.forEach((p) => setCat.add(p.category));
         return ["All", ...Array.from(setCat)];
-    }, [productsList]);
+    }, [fetchedProducts]);
 
 
     // FILTERED DATA
@@ -59,6 +70,7 @@ export default function ProductList() {
         { field: "productId", headerName: "Product ID", minWidth: 120, flex: 1 },
         { field: "name", headerName: "Name", width: 180 },
         { field: "category", headerName: "Category", minWidth: 120, flex: 1 },
+        { field: "stock", headerName: "Stock", minWidth: 50, flex: 1 },
         { field: "price", headerName: "Price (LKR)", align: "right", minWidth: 120, flex: 1 },
         { field: "status", headerName: "Status", minWidth: 50, flex: 1 },
         {
@@ -95,6 +107,12 @@ export default function ProductList() {
                     status: status ? "Active" : "Inactive",
                 },
             });
+
+            dispatch(updateProductInStore({
+                productId: selectedProduct.productId,
+                stock,
+                status: status ? "Active" : "Inactive",
+            }));
 
             Swal.fire({
                 toast: true,
@@ -229,6 +247,7 @@ export default function ProductList() {
                     status={status}
                     setStatus={setStatus}
                     onSave={handleSaveChanges}
+                    isUpdating={isUpdating}
                 />
             </div>
         </>
