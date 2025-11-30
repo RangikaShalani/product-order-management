@@ -10,7 +10,7 @@ export default function Home() {
                     Home Page
                 </Typography>
                 <Typography variant="body1">
-                    Welcome to your React + Router + Global CSS app.
+                    Welcome to your React Product Inventory & Order Management app.
                 </Typography>
 
 
