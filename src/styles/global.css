@@ -35,7 +35,7 @@
 }
 
 /* ===== DARK THEME ===== */
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
     :root {
         --background-color: #0e1545;
         --background: #3b3a3a;
@@ -68,10 +68,10 @@
     html {
         color-scheme: dark;
     }
-}
+} */
 
 /* Manual Dark Mode */
-html.dark {
+/* html.dark {
     --background: #3b3a3a;
     --foreground: #ededed;
     --background-hover: #f5f0f023;
@@ -96,8 +96,36 @@ html.dark {
     --text-title: #4299e1;
 
     --border: #918f8f;
-}
+} */
 
+html.dark {
+    --background-color: #0e1545 !important;
+    --background: #3b3a3a !important;
+    --foreground: #ededed !important;
+    --background-hover: #f5f0f023 !important;
+    --background-secondary: #5a5656 !important;
+    --background-sp: #272c31 !important;
+
+    --background-gradient: linear-gradient(135deg, #3a3a3a, #161616) !important;
+    --background-gradient-1: radial-gradient(circle at top, #1e3a8a, #111827) !important;
+    --background-gradient-2: linear-gradient(180deg, #1e3a8a, #111827) !important;
+    --background-image: url('../../public/home-background-dark.png') !important;
+
+
+    --primary: #5fb9f9 !important;
+    --primary-hover: #4299e1 !important;
+    --secondary: #a0aec0 !important;
+    --accent: #4fd1c5 !important;
+    --danger: #f56565 !important;
+    --success: #48bb78 !important;
+    --warning: #f6ad55 !important;
+
+    --text-primary: #f0f0f0 !important;
+    --text-secondary: #cccccc !important;
+    --text-title: #4299e1 !important;
+
+    --border: #918f8f !important;
+}
 
 /* Global body style */
 body {
