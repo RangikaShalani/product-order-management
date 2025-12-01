@@ -13,6 +13,12 @@ export default function Navbar({ onMenuClick }) {
     const navigate = useNavigate();
     const [darkMode, setDarkMode] = useState(false);
 
+    // Detect browser theme on first load
+    useEffect(() => {
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        setDarkMode(prefersDark);
+    }, []);
+
     useEffect(() => {
         document.documentElement.classList.toggle("dark", darkMode);
     }, [darkMode]);
