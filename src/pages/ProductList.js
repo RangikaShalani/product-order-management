@@ -187,9 +187,10 @@ export default function ProductList() {
                                 backgroundColor: "var(--background)",
                                 color: "var(--text-primary)",
 
+
                                 /* HEADER (background + text) */
                                 "& .MuiDataGrid-columnHeaders": {
-                                    backgroundColor: "var(--header-bg)",
+                                    backgroundColor: "#000000",
                                     color: "var(--header-text)",
                                 },
 

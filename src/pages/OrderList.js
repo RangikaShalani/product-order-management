@@ -124,7 +124,22 @@ export default function OrderList() {
 
 
                 <div style={{ display: "flex", gap: 20, marginBottom: 20 }}>
-                    <FormControl>
+                    <FormControl sx={{
+                        "& .MuiNativeSelect-root": {
+                            color: "var(--text-primary)",
+                            borderColor: "var(--border)",
+                        },
+                        "& .MuiInputLabel-root": {
+                            color: "var(--text-primary)",
+                        },
+                        "& .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "var(--border)",
+                        },
+                        "& .MuiSvgIcon-root": {
+                            color: "var(--text-primary)",
+                            fontSize: isMobile ? "1rem" : "1.5rem",
+                        },
+                    }}>
                         <InputLabel>Status</InputLabel>
                         <Select
                             value={statusFilter}
@@ -146,12 +161,33 @@ export default function OrderList() {
                         value={searchText}
                         onChange={(e) => setSearchText(e.target.value)}
                         style={{ width: 300 }}
+                        sx={{
+                            "& .MuiInputBase-input-MuiOutlinedInput-input": {
+                                color: "var(--text-primary)",
+                                borderColor: "var(--border)",
+                            },
+                            "& .MuiInputLabel-root": {
+                                color: "var(--text-primary)",
+
+                            },
+                            "& .MuiOutlinedInput-notchedOutline": {
+                                borderColor: "var(--border)",
+                            },
+                        }}
                     />
                 </div>
 
-                <TableContainer component={Paper}>
-                    <Table>
-                        <TableHead>
+                <TableContainer component={Paper} sx={{ background: "var(--background)", color: "var(--text-primary)" }}  >
+                    <Table sx={{ background: "var(--background)", color: "var(--text-primary)" }} >
+                        <TableHead sx={{
+                            "& .MuiTableSortLabel-root": {
+                                color: "var(--text-primary)"
+                            },
+                            "& .MuiButtonBase-root-MuiTableSortLabel-root.Mui-active": {
+                                color: "var(--text-primary)"
+                            }
+
+                        }}>
                             <TableRow>
                                 {[
                                     { label: "Order ID", key: "OrderId" },
@@ -176,9 +212,13 @@ export default function OrderList() {
                             </TableRow>
                         </TableHead>
 
-                        <TableBody>
+                        <TableBody sx={{ background: "var(--background)", color: "var(--text-primary)" }}>
                             {paginatedOrders.map((order) => (
-                                <TableRow key={order.OrderId}>
+                                <TableRow key={order.OrderId} sx={{
+                                    "& .MuiTableCell-root": {
+                                        color: "var(--text-primary)"
+                                    }
+                                }} >
                                     <TableCell>{order.OrderId}</TableCell>
                                     <TableCell>{order.productName}</TableCell>
                                     <TableCell>{order.orderBy}</TableCell>
@@ -208,7 +248,7 @@ export default function OrderList() {
 
 
                     </Table>
-                    <Box display="flex" justifyContent="center" alignItems="center" p={2}>
+                    <Box display="flex" justifyContent="center" alignItems="center" p={2} background="var(--background)">
 
                         {/* Pagination Component */}
                         <Pagination
@@ -216,6 +256,8 @@ export default function OrderList() {
                             page={page}
                             onChange={(event, value) => setPage(value)}
                             color="primary"
+                        // sx={{ color: "#ffffff" }}
+
                         />
                     </Box>
                 </TableContainer>

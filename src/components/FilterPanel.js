@@ -50,7 +50,13 @@ export default function FilterPanel({
                             "& .MuiInputBase-input": {
                                 fontSize: isMobile ? "0.75rem" : "1rem",
                                 padding: isMobile ? "8px" : "12px",
-                            }
+                            },
+                            "& .MuiOutlinedInput-notchedOutline": {
+                                borderColor: "var(--border)",
+                            },
+                            "& .MuiInputLabel-root": {
+                                color: "var(--text-primary)",
+                            },
                         }}
                     />
 
@@ -66,7 +72,20 @@ export default function FilterPanel({
                             "& .MuiInputBase-input": {
                                 fontSize: isMobile ? "0.75rem" : "1rem",
                                 padding: isMobile ? "8px" : "12px",
-                            }
+                                color: "var(--text-primary)",
+                            },
+                            "& .MuiOutlinedInput-notchedOutline": {
+                                borderColor: "var(--border)",
+                            },
+                            "& .MuiSvgIcon-root": {
+                                color: "var(--text-primary)",
+
+                            },
+
+                            "& .MuiInputLabel-root": {
+                                color: "var(--text-primary)",
+                            },
+
                         }}
                     >
                         {categories.map((cat) => (
