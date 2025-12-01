@@ -37,6 +37,7 @@ import {
     TableSortLabel,
     TextField,
     Box,
+    useMediaQuery,
 } from "@mui/material";
 import "../styles/home.css";
 
@@ -44,6 +45,7 @@ export default function OrderList() {
     const { data: orders = [], error, isLoading } = useGetAllOrdersQuery();
     const [page, setPage] = useState(1);
     const [rowsPerPage, setRowsPerPage] = useState(5);
+    const isMobile = useMediaQuery("(max-width:768px)");
 
     const [statusFilter, setStatusFilter] = useState("");
     const [searchText, setSearchText] = useState("");
